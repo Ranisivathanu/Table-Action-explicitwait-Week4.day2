@@ -11,7 +11,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Disappear {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)throws IOException {
 		
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver=new ChromeDriver();
@@ -23,7 +23,9 @@ public class Disappear {
 	wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//button[@id='btn']"))));
 	String text = driver.findElement(By.tagName("strong")).getText();
 	System.out.println(text);
-	
+	File screenshotAs = driver.getScreenshotAs(OutputType.FILE);
+	File storage=new File("./snap/shot2.jpg");
+	FileUtils.copyFile(screenshotAs, storage);
 	
 	}
 
