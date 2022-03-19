@@ -11,7 +11,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Appear {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)throws IOException {
 		
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver=new ChromeDriver();
@@ -23,7 +23,9 @@ public class Appear {
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.tagName("button"))));
 		String text = driver.findElement(By.xpath("//b[text()='I know you can find him']")).getText();
 		System.out.println(text);
-	
+	       File screenshotAs = driver.getScreenshotAs(OutputType.FILE);
+		File storage=new File("./snap/shot1.jpg");
+		FileUtils.copyFile(screenshotAs, storage);
 	}
 
 }
