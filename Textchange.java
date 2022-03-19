@@ -13,7 +13,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Textchange {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 		
 		WebDriverManager.chromedriver().setup();
 		ChromeDriver driver=new ChromeDriver();
@@ -30,7 +30,9 @@ public class Textchange {
          String text = driver.findElement(By.xpath("//button[@class='btn']")).getText();
 	     System.out.println(text);
 	     
-	
+	File screenshotAs = driver.getScreenshotAs(OutputType.FILE);
+	File storage=new File("./snap/shot3.jpg");
+	FileUtils.copyFile(screenshotAs, storage);
 	
 	}
 
